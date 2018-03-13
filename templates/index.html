@@ -8,11 +8,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
         <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/homepage.css') }}">
+        
     </head>
     <body>
+        <div class="topnav" style="width:100%;">
+            <a class="home" href="{{ url_for('home') }}}">RememberAll</a>
+            <a class="logout" href="{{ url_for('logout') }}">log&nbsp;out</a>
+        </div>
         <form>
             <div>
-                <h2>{{ name }}, Your To Do List</h2>
+                <h2>{{ name }}, what's your main focus today?</h2>
                  <input class = "form-control" name="myInput" id="myInput" type="text" placeholder="Enter Your Plan Today" style="
                       width: 35%;
                       height: 35px;
