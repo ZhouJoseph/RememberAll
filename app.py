@@ -10,7 +10,7 @@ import pymysql.cursors
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Thisissupposedtobesecret!'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/Zhoukx.joseph/Desktop/CS1122/project1-tg1632-zds238-cz1529-kz1005-jjz282/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/ubuntu/RememberAll/database.db'
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
@@ -78,7 +78,7 @@ def createItem():
     newItem = request.form["InputData"]
     priKey = 0
     if(newItem !=""):
-        conn = pymysql.connect(host = 'localhost',user='username',password='cs1122project',database='todo')
+        conn = pymysql.connect(host = '0.0.0.0',user='username',password='myproject',database='todo')
         try:
     		    with conn.cursor() as cursor:
         		    sql = "INSERT INTO `todolist` (`things`, `user`) VALUES (%s,%s)"
@@ -93,7 +93,7 @@ def createItem():
 @app.route("/todo/read")
 def getList():
     try:
-        conn = pymysql.connect(host = 'localhost',user='username',password='cs1122project',database='todo')
+        conn = pymysql.connect(host = '0.0.0.0',user='username',password='myproject',database='todo')
         with conn.cursor() as cursor:
             sql = "SELECT * FROM todolist Where user=(%s)"
             cursor.execute(sql,(current_user.username))
@@ -107,7 +107,7 @@ def deleteItem():
     Deleted = request.form["data"]
     key = request.form["key"]
     try:
-        conn = pymysql.connect(host = 'localhost',user='username',password='cs1122project',database='todo')
+        conn = pymysql.connect(host = '0.0.0.0',user='username',password='myproject',database='todo')
         with conn.cursor() as cursor:
             sql = "DELETE FROM todolist WHERE id=(%s)"
             cursor.execute(sql,(key))
@@ -122,7 +122,7 @@ def updateItem():
     New = request.form['item']
     key = request.form['key']
     try:
-        conn = pymysql.connect(host = 'localhost',user='username',password='cs1122project',database='todo')
+        conn = pymysql.connect(host = '0.0.0.0',user='username',password='myproject',database='todo')
 
         with conn.cursor() as cursor:
             sql = "UPDATE todolist SET things =(%s) WHERE id=(%s)"
