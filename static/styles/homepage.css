@@ -9,7 +9,7 @@ body {
     overflow: hidden;
     background-color: #333;
     position: fixed;
-    z-index: 999;
+    z-index: 99999;
     width: 100%;
 }
 .topnav a {

@@ -12,15 +12,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
 </head>
 <body>
+    <div class="topnav" style="width:100%;">
+        <a class="home" href="{{ url_for('home') }}}">RememberAll</a>
+        <a class="signin" href="{{ url_for('login') }}">Sign&nbsp;in</a>
+        <a class="signup" href="{{ url_for('signup') }}">Sign&nbsp;up</a>
+        <a class="todo" href="{{ url_for('todo') }}">Todos</a>
+        <a class="aboutus" href="#aboutus">About&nbsp;us</a>
+        <a class="logout" href="{{ url_for('logout') }}">log&nbsp;out</a>        
+    </div>
+
     <div id="home" class="container" style="width:100%;"></div>
-        <div class="topnav" style="width:100%;">
-            <a class="home" href="{{ url_for('home') }}}">RememberAll</a>
-            <a class="signin" href="{{ url_for('login') }}">Sign&nbsp;in</a>
-            <a class="signup" href="{{ url_for('signup') }}">Sign&nbsp;up</a>
-            <a class="todo" href="{{ url_for('todo') }}">Todos</a>
-            <a class="aboutus" href="#aboutus">About&nbsp;us</a>
-            <a class="logout" href="{{ url_for('logout') }}">log&nbsp;out</a>        
-        </div>
         <img src="{{ url_for('static',filename='images/scene.jpeg') }}" width="102%">
         <div class="words">
             <h2 id="websiteName">
