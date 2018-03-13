@@ -52,7 +52,7 @@ def login():
                 login_user(user, remember=form.remember.data)
                 return redirect(url_for('todo'))
 
-        return jsonify({'error' : 'invalid username or password' }})
+        return jsonify({'error' : 'invalid username or password' })
         #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
 
     return render_template('login.html', form=form)
