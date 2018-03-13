@@ -52,7 +52,7 @@ def login():
                 login_user(user, remember=form.remember.data)
                 return redirect(url_for('todo'))
 
-        return '<h1>Invalid username or password</h1>'
+        return jsonify({'error' : 'invalid username or password' }})
         #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
 
     return render_template('login.html', form=form)
@@ -67,7 +67,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
 
-        return '<h1>New user has been created!</h1>'
+        return redirect(url_for('todo'))
         #return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
 
     return render_template('signup.html', form=form)
