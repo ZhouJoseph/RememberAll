@@ -5,36 +5,104 @@
         <title>MyToDoList</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/bootstrap.css') }}">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/timing.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/todo.css') }}">
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
         <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
         
     </head>
     <body>
-        <div class="topnav" style="width:100%;">
-            <a class="home" href="{{ url_for('home') }}">RememberAll</a>
+        <div class="topnav" style="width:100%;opacity:.8;">
+            <span style="color:rgb(244, 135, 76);text-align:center;font-size:40px;">&nbsp;&nbsp;RememberAll&nbsp;&nbsp;</span>
+            <a class="home" href="{{ url_for('home') }}">Home</a>
             <a class="logout" href="{{ url_for('logout') }}">log&nbsp;out</a>
+            <a class="allpast" href="{{ url_for('past') }}">fetchall</a>
         </div>
-        <form>
-            <div>
-                <h2>{{ name }}, what's your main focus today?</h2>
-                 <input class = "form-control" name="myInput" id="myInput" type="text" placeholder="Enter Your Plan Today" style="
-                      width: 35%;
-                      height: 35px;
-                      font-size: 15px;
-                      font-family: 'Roboto Condensed', sans-serif;
-                      display: inline-block;
-                      margin-left: 29%;
-                    ">
-                <button id="addBtn" type="submit" class = "btn btn-danger" style="
-                font-family: 'Roboto Condensed', sans-serif;
-                display: inline-block;">AddTask</button>
-                
-                
-                <ul id="MyList"></ul>
+
+        <span id="todospan" onclick="myFunction()">Todo</span>
+        <div id="weather">
+            Hi, {{ city }}er.<br>
+            temperature: {{ temp }}&#8451;<br>
+            weather: {{ weather }}
+        </div>
+        <div id="timing">
+            <h1 id="clock"></h1>
+            <p id="hex-color"></p>
+        </div>
+
+        <div id="greeting">
+            Good
+            <span id="daytime"></span>
+            {{ name }}
+        </div>
+            <div id="greetwords">
+                What do you want to write for today?<br>
+                <form id="form1">
+                    <div>
+                        <input class="text-line" id="thing1" type="text" autocomplete="off">
+                    </div>
+                </form>
+                <form id="form2">
+                    <div>
+                        <input class="text-line" id="thing2" type="text" autocomplete="off"> 
+                    </div>
+                </form>
+                <form id="form3">
+                    <div>
+                        <input class="text-line" id="thing3" type="text" autocomplete="off">
+                    </div>
+                </form>
             </div>
-        </form>
+        
+
+        <!-- the block for the todos -->
+        <div id="bodyBlack" style="background-color:rgba(28, 25, 23, 0.76);">
+            <form id="form4">
+                <div>
+                    <h2><br>{{ name }}, your todos</h2>
+                    <ul id="MyList"></ul>
+                    <div id="inputDiv" style="height:30px;margin: 0 auto; width: 80%;">
+                        <input name="myInput" id="myInput" type="text" placeholder="Enter Your Plan Today" style="
+                            height: 35px;
+                            font-size: 15px;
+                            font-family: 'Roboto Condensed', sans-serif;
+                            display: inline-block;
+                            border: 0;
+                            background: transparent;
+                            outline: none;
+                            color: white;
+                            width: 100%;
+                            " autocomplete="off">
+                        <!-- <button id="addBtn" type="submit" class = "btn btn-danger" style="
+                        font-family: 'Roboto Condensed', sans-serif;
+                        display: inline-block;">AddTask</button> -->
+                    </div>
+                </div>
+            </form>
+            <p style="font-size:5px;color:transparent;">&amp;nbsp;</p>
+        </div> <!--end of body block -->
+
+
+        
+
+
 
         <script type="text/javascript" src="{{ url_for('static',filename='JS/main.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static',filename='JS/timing.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static',filename='JS/record.js') }}"></script>
+
+        <!-- the script for showing/display:none for the todos -->
+        <script>
+            function myFunction() {
+                var x = document.getElementById("bodyBlack");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>

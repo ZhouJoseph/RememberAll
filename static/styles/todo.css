@@ -1,0 +1,75 @@
+#bodyBlack {
+    margin: 0 auto;
+    width: 300px;
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+}
+
+span:hover {
+    cursor: pointer;
+}
+
+.crossline {
+    text-decoration: line-through;
+}
+
+h2 {
+    width: 100%;
+    margin-left: 5%;
+    position: relative;
+    font-size: 20px;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+ul li:nth-child(odd) {
+    background-color: rgba(27, 27, 27, 0.7)
+}
+
+ul li:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+li {
+    border-width: 0 2px 2px 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16 px;
+    color: white;
+    -webkit-transition-property: color;
+    -webkit-transition-duration: .2s;
+    transition-property: color;
+    transition-duration: .2s;
+}
+
+#MyList {
+    position: relative;
+    margin-top: 2%;
+    margin-bottom: auto;
+}
+
+.close {
+    color: white;
+    margin-right: 2%;
+}
+
+.close:hover {
+    color: white;
+}
+
+.crossoff {
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    left: 86%;
+}
+
+.crossoff:hover {
+    color: white;
+}
+
+#todospan{
+    color: white;
+    position: absolute;
+    bottom: 5px;
+    left: 145px;
+}

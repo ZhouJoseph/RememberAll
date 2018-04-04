@@ -1,0 +1,14 @@
+#clock {
+    font-weight: 300;
+    font-size: 50px;
+}
+
+#timing {
+    color: white;
+    text-align: center;
+    opacity: 0.5;
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    width:300px;
+}

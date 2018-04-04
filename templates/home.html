@@ -12,13 +12,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
 </head>
 <body>
-    <div class="topnav" style="width:100%;">
-        <a class="home" href="{{ url_for('home') }}">RememberAll</a>
-        <a class="signin" href="{{ url_for('login') }}">Sign&nbsp;in</a>
-        <a class="signup" href="{{ url_for('signup') }}">Sign&nbsp;up</a>
+    <div class="topnav" style="width:100%;opacity:.8;">
+        <a class="home" href="{{ url_for('home') }}">Home</a>
+        <a class="signin" id = {{ name }} href="{{ url_for('login') }}">Sign&nbsp;in</a>
+        <a class="signup" id = {{ name }} href="{{ url_for('signup') }}">Sign&nbsp;up</a>
+        <a class="user" style="display:none;" > {{name}}</a>
+        <span style="color:black;text-align:center;font-size:40px;">RememberAll</span>
         <a class="todo" href="{{ url_for('todo') }}">Todos</a>
         <a class="aboutus" href="#aboutus">About&nbsp;us</a>
-        <a class="logout" href="{{ url_for('logout') }}">log&nbsp;out</a>        
+        <a class="logout" href="{{ url_for('logout') }}">log&nbsp;out</a>    
     </div>
 
     <div id="home" class="container" style="width:100%;">
@@ -43,6 +45,23 @@
         others record some important moments, I came up with this project.<br><br><br><br><br></p>
     </div>
 
+    <script>
+        function myFunction() {
+            var signin = document.getElementsByClassName("signin")[0];
+            var signup = document.getElementsByClassName("signup")[0];
+            var y = signin.id;
+            var user = document.getElementsByClassName("user")[0];
+            if (y === "no"){
+                return;
+            } else {
+                signin.style.display = "none";
+                signup.style.display = "none";
+                user.style.display = "block";
+            }
+        }
+        myFunction();
 
+
+    </script>
 </body>
 </html>

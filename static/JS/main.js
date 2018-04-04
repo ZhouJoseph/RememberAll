@@ -6,12 +6,43 @@ $(document).ready(function() {
 
     function createNode(id, data){
       var li = $("<li id='" + id + "'>" + data + "</li>");
-      var span = $("<span class='close'>×</span>");
+      var crossline = $("<span class='crossoff'>&#10003;</span>");
+      var span = $("<span class='close'>&#215;</span>");
+      li.append(crossline);
       li.append(span);
-      $MyList.append(li.append(span));
+      $MyList.append(li);
     }
 
-    $("form").on("submit", function(event) {
+    function deleteTextbox() {
+      var task = oriText;
+      var idKey = $(this).parent().attr('id');
+
+      var url = "/todo/delete";
+      var settings = {
+        type: "DELETE",
+        // data : {data : task[0].innerHTML, key:task[1].innerHTML,},
+        data: { data: task, key: idKey, },
+        success: function (response) {
+          oriText = "";
+          console.log(response.success);
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      };
+      $.ajax(url, settings);
+      $(this).parent().remove();
+    }
+
+
+    $("#MyList").on('click', 'span>li', function (){
+      $(this).prev().toggleClass('crossline');
+      $(this).parent().toggleClass('crossline');
+    });
+
+
+
+    $("#form4").on("submit", function(event) {
         $.ajax({
             data: {
                 InputData: $("#myInput").val(),
@@ -39,14 +70,14 @@ $(document).ready(function() {
     })
     .done(function(todo) {
         $.each(todo, function(index, item) { 
-                createNode(item[0],item[1])
+                createNode(item[0],item[1]);
         });
     });
 
 
 
     $("#MyList").on('click', '.close', function () {
-      var task = $(this).parent().text().slice(0,-1);
+      var task = $(this).parent().text().slice(0,-2);
       var idKey = $(this).parent().attr('id');
 
       var url = "/todo/delete";
@@ -64,25 +95,21 @@ $(document).ready(function() {
       $(this).parent().remove();
     });
 
-
-
-
-
     $("#MyList").on('click', 'li' , function() {
       if (oriText == "") {
-        oriText = $(this).text().slice(0,-1);
+        oriText = $(this).text().slice(0,-2);
         keys = $(this).attr('id');
         $(this).text("");
-        $("<input id='newContent'type='text' style='width:45%;background:transparent;color:white;'>").appendTo(this).focus().val(oriText);
+        $("<input id='newContent'type='text' style='width:80%;background:transparent;color:white;border:none;outline: none;'><span class='close '>&#215;</span>").appendTo(this).focus().val(oriText);
       }
     });
     $("#MyList").on('keypress', 'input', function (e) {
       if (e.keyCode == 13) {
         if ($("#newContent").val() == "") {
-          $(this).parent().html(oriText + "<span class='close'>×</span>");
+          $(this).parent().html(oriText + "<span class='crossoff'>&#10003;</span><span class='close'>&#215;</span>");
         } else {
           var task = $("#newContent").val()
-          $(this).parent().html(task + "<span class='close'>×</span>");
+          $(this).parent().html(task + "<span class='crossoff'>&#10003;</span><span class='close'>&#215;</span>");
           var url = "/todo/update";
           var settings = {type : "PUT",
                           data : {item : task, old : oriText, key : keys},
@@ -98,7 +125,7 @@ $(document).ready(function() {
       }
     });
     $("#MyList").on('focusout', 'li > input', function() {
-      $(this).parent().html(oriText + "<span class='close'>×</span>");
-      oriText = "";
+        $(this).parent().html(oriText + "<span class='crossoff'>&#10003;</span><span class='close'>&#215;</span>");
+        oriText = "";
   });
 });
